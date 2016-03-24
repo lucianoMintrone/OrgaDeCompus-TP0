@@ -1,0 +1,12 @@
+Usage:
+  tp0 -h
+  tp0 -V
+  tp0 [options]
+Options:
+  -V, --version Print version and quit.
+  -h, --help Print this information.
+  -o, --output Path to output file.
+  -i, --input Path to input file.
+  -d, --decode Decode a base64-encoded file.
+Examples:
+  tp0 -i input.txt -o output.txt
