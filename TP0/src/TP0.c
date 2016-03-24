@@ -64,10 +64,6 @@ int main(void) {
 	}
 
 	if (charReadCounter % 3 == 1) {
-
-		//lastPartOfCurrentReadingByte = 0;
-		//firstPartOfCurrentReadingByte = 0;
-		//lastPartOfPreviousReadByte = lastPartOfPreviousReadByte<<4;
 		byteToConvert = numberToBeConvertForLastByte(lastPartOfPreviousReadByte, 4);
 		printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
 		printf("Your symbol in base 64 is =\n");
@@ -75,9 +71,6 @@ int main(void) {
 	}
 
 	if (charReadCounter % 3 == 2) {
-		//lastPartOfCurrentReadingByte = 0;
-		//firstPartOfCurrentReadingByte = 0;
-		//lastPartOfPreviousReadByte = lastPartOfPreviousReadByte<<2;
 		byteToConvert = numberToBeConvertForLastByte(lastPartOfPreviousReadByte, 2);
 
 		printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
