@@ -40,8 +40,15 @@ int main (int argc, char *argv[]) {
   char *input_file, *output_file;
   input_file = output_file = NULL;
   int flag = 0;
+  struct option opts[] = {
+        {"version", no_argument, 0, 'V'},
+        {"help", no_argument, 0, 'h'},
+        {"output", required_argument, 0, 'o'},
+        {"input", required_argument, 0, 'i'},
+        {"decode", no_argument, 0, 'd'}
+  };
 
-  while ((flag = getopt(argc, argv,"Vho:i:d")) != -1) {
+  while ((flag = getopt_long(argc, argv, "Vho:i:d", opts, NULL)) != -1) {
     switch (flag) {
       case 'V' :
         version = true;
