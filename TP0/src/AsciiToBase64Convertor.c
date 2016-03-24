@@ -9,7 +9,7 @@ const char * symbolInBase24ForInt(int number);
 int numberToBeConvert(char charRead, int numberOfShiftsToTheRigth , int lastPartOfPreviousReadByte);
 int numberToBeConvertForLastByte (int lastPartOfPreviousReadByte ,int numberOfShiftsToTheLeft);
 
-void typeTextToConvertToBase24() {
+void typeTextToConvertToBase24(){
 	int lastPartOfCurrentReadingByte;
 		int lastPartOfPreviousReadByte = 0;
 		int byteToConvert;
