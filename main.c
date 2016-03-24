@@ -35,18 +35,19 @@ void show_help() {
 }
 
 int main (int argc, char *argv[]) {
-  bool output, input, decode;
-  output = input = decode = false;
+  bool help, version, output, input, decode;
+  help = version = output = input = decode = false;
   char *input_file, *output_file;
+  input_file = output_file = NULL;
   int flag = 0;
 
   while ((flag = getopt(argc, argv,"Vho:i:d")) != -1) {
     switch (flag) {
       case 'V' :
-        show_version();
+        version = true;
         break;
       case 'h' :
-        show_help();
+        help = true;
         break;
       case 'o' :
         output_file = optarg;
@@ -58,17 +59,22 @@ int main (int argc, char *argv[]) {
         break;
       case 'd' :
         decode = true;
-        break;
-      default:
-        show_help();
-        return EXIT_FAILURE;
     }
   }
 
-  if (input && output && decode) {
+  if (help) {
+    show_help();
+  } else if (version) {
+    show_version();
+  } else if (input && output && decode) {
     //64_2_ascii(input_file, output_file);
   } else if (input && output) {
     //ascii_2_64(input_file, output_file);
+  } else if (argv[1]) {
+    /* ascii_2_64(argv[1], NULL);
+     * Cuando output_file == NULL que mande el resultado por stdout ¿?
+     * y lo que recibe en el input es el texto a convertir directo
+     */
   }
 
   return EXIT_SUCCESS;
