@@ -1,41 +1,11 @@
 /*
- ============================================================================
- Name        : TP0.c
- Author      : 
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
- ============================================================================
+ * AsciiToBase64Converter.c
+ *
+ *  Created on: Mar 24, 2016
+ *      Author: luciano
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "AsciiToBase64Converter.h"
-
-const char * symbolInBase24ForInt(int number);
-
-int main(void) {
-	int firstSixBitsOfByte;
-	int lastTwoBitsOfByte;
-
-	char charRead;
-	char copyOfCharRead;
-
-	printf("Enter a char: ");
-	scanf("%s",&charRead);
-	copyOfCharRead = charRead;
-
-	firstSixBitsOfByte = charRead>>2;
-	lastTwoBitsOfByte = copyOfCharRead&3;
-
-	printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(firstSixBitsOfByte));
-	//printf("Your new number is %d\n",number);
-	//printf("last two bits of byte = %d\n", lastTwoBitsOfByte);
-	return EXIT_SUCCESS;
-}
-
-/*const char* symbolInBase24ForInt (int number){
+const char* symbolInBase24ForInt (int number){
 	switch(number) {
 		case 0:
 			return "A";
@@ -230,5 +200,5 @@ int main(void) {
 			return "A";
 			break;
 	}
-}*/
+}
 
