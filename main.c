@@ -70,10 +70,10 @@ int main (int argc, char *argv[]) {
     //64_2_ascii(input_file, output_file);
   } else if (input && output) {
     //ascii_2_64(input_file, output_file);
-  } else if (argv[1]) {
-    /* ascii_2_64(argv[1], NULL);
-     * Cuando output_file == NULL que mande el resultado por stdout ¿?
-     * y lo que recibe en el input es el texto a convertir directo
+  } else if (!feof(stdin)) {
+    /*
+     * ascii_2_64(NULL, NULL);
+     * Cuando input_file y output_file == NULL que mande el resultado por stdout ¿?
      */
   }
 
