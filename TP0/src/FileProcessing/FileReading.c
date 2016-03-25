@@ -2,7 +2,7 @@
 // En charArray aloca 3 caracteres de un .txt, posiciones 1 2 3.
 // La posicion 0 esta reservada para la longitud logica.
 
-char getArrayOfCaracters (FILE* fp, char* charArray){
+void getArrayOfCaracters (FILE* fp, char* charArray){
     // Variables
     int i = 0;
     // Fin Variables
