@@ -83,6 +83,25 @@ int main (int argc, char *argv[]) {
      * Cuando input_file y output_file == NULL que mande el resultado por stdout ¿?
      */
   }
-
+  /*
+  // Codificacion
+  // Variables
+  FILE* fp = initFile();
+  char charArray[4];        // La posicion 0 es para la longitud.
+  char processedArray[[7]]; // La posicion 0 es para la longitud.
+  // Fin Variables
+  
+  while( !feof(fp) ){
+      
+      getArrayOfCaracters(fp, charArray );
+      processArray( charArray, processedArray ); // Falta
+      writeArray(processedArray); // Falta
+      
+      
+  }
+   
+  fclose(fp);
+  */
+  
   return EXIT_SUCCESS;
 }
