@@ -175,26 +175,29 @@ const char* symbolInBase24ForInt (int number){
 		case 55:
 			return "3";
 			break;
-		case 57:
+		case 56:
 			return "4";
 			break;
-		case 58:
+		case 57:
 			return "5";
 			break;
-		case 59:
+		case 58:
 			return "6";
 			break;
-		case 60:
+		case 59:
 			return "7";
 			break;
-		case 61:
+		case 60:
 			return "8";
 			break;
-		case 62:
+		case 61:
 			return "9";
 			break;
-		case 63:
+		case 62:
 			return "+";
+			break;
+		case 63:
+			return "/";
 			break;
 		default:
 			return "A";

@@ -11,14 +11,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "AsciiToBase64Table.h"
 #include "AsciiToBase64Convertor.h"
+#include "Base24ToAsciiConvertor.h"
 
 void typeTextToConvertToBase24();
+void typeTextToConvertToAscii();
 
 int main(void) {
 	typeTextToConvertToBase24();
 	printf("\n=========\n");
+	typeTextToConvertToAscii();
 	return EXIT_SUCCESS;
 }
 
