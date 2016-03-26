@@ -5,10 +5,9 @@
 #include "file_handler.h"
 
 #define ACCOUNT_THE_END_OF_STR 1
-#define REWIND_ONE 1
 
 bool file_handler_init(file_handler_t* self, char* file_name, 
-						char* mode, size_t block_size) {
+			char* mode, size_t block_size) {
 	self->fp = fopen(file_name, mode);
 	if (!self->fp) return false;
 	self->block_size = block_size;
