@@ -10,9 +10,9 @@ void codificateASCIItoBase64(){
   openReadableFile(readableFile);
   openWritableFile(writableFile);
   
-  while( !feof(fp) ){
+  while( !feof(readableFile) ){
       
-      getArrayOfCaracters(fp, charArray );
+      getArrayOfCaracters(readableFile, charArray );
       processArrayForCodification( charArray, processedArray );
       writeArray(processedArray);
       
@@ -35,9 +35,9 @@ void codificateBase64toASCII(){
   openReadableFile(readableFile);
   openWritableFile(writableFile);
   
-  while( !feof(fp) ){
+  while( !feof(readableFile) ){
       
-      getArrayOfCaracters(fp, charArray );
+      getArrayOfCaracters(readableFile, charArray );
       processArrayForDecodification( charArray, processedArray );
       writeArray(processedArray);
       
