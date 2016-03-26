@@ -86,21 +86,26 @@ int main (int argc, char *argv[]) {
   /*
   // Codificacion
   // Variables
-  FILE* fp = initFile();
+  FILE* readableFile; 
+  FILE* writableFile;
   char charArray[4];      // La posicion 0 es para la longitud.
   char processedArray[4]; // 4 caracteres codificados en base 64.
   // Fin Variables
+  
+  openReadableFile(readableFile);
+  openWritableFile(writableFile);
   
   while( !feof(fp) ){
       
       getArrayOfCaracters(fp, charArray );
       processArray( charArray, processedArray ); // Falta
-      writeArray(processedArray); // Falta
+      writeArray(processedArray);
       
       
   }
    
-  fclose(fp);
+  fclose(readableFile);
+  fclose(writableFile);
   */
   
   return EXIT_SUCCESS;
