@@ -87,8 +87,8 @@ int main (int argc, char *argv[]) {
   // Codificacion
   // Variables
   FILE* fp = initFile();
-  char charArray[4];        // La posicion 0 es para la longitud.
-  char processedArray[[7]]; // La posicion 0 es para la longitud.
+  char charArray[4];      // La posicion 0 es para la longitud.
+  char processedArray[4]; // 4 caracteres codificados en base 64.
   // Fin Variables
   
   while( !feof(fp) ){
