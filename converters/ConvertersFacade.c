@@ -1,3 +1,7 @@
+#include "../handlers/FileReading.h"
+#include "../handlers/FileWriting.h"
+
+
 void codificateASCIItoBase64(char* input_file,char* output_file){
     
   // Variables
@@ -14,7 +18,7 @@ void codificateASCIItoBase64(char* input_file,char* output_file){
       
       getArrayOfCaracters(readableFile, charArray );
       processArrayForCodification( charArray, processedArray );
-      writeArray(processedArray);
+      writeArray(writableFile ,processedArray);
       
   }
    
@@ -39,7 +43,7 @@ void codificateBase64toASCII(char* input_file,char* output_file){
       
       getArrayOfCaracters(readableFile, charArray );
       processArrayForDecodification( charArray, processedArray );
-      writeArray(processedArray);
+      writeArray(writableFile ,processedArray);
       
   }
    
