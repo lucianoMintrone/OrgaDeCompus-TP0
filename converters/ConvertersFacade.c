@@ -1,4 +1,4 @@
-void codificateASCIItoBase64(){
+void codificateASCIItoBase64(char* input_file,char* output_file){
     
   // Variables
   FILE* readableFile; 
@@ -7,8 +7,8 @@ void codificateASCIItoBase64(){
   char processedArray[4]; // 4 caracteres codificados en base 64.
   // Fin Variables
   
-  openReadableFile(readableFile);
-  openWritableFile(writableFile);
+  readableFile = fopen("../textFiles/%s",input_file , "r");
+  writableFile = fopen("../textFiles/%s",output_file , "w");
   
   while( !feof(readableFile) ){
       
@@ -23,7 +23,7 @@ void codificateASCIItoBase64(){
     
 }
 
-void codificateBase64toASCII(){
+void codificateBase64toASCII(char* input_file,char* output_file){
     
       // Variables
   FILE* readableFile; 
@@ -32,8 +32,8 @@ void codificateBase64toASCII(){
   char processedArray[3]; // 3 caracteres codificados en ASCII.
   // Fin Variables
   
-  openReadableFile(readableFile);
-  openWritableFile(writableFile);
+  readableFile = fopen("../textFiles/%s",input_file , "r");
+  writableFile = fopen("../textFiles/%s",output_file , "w");
   
   while( !feof(readableFile) ){
       
