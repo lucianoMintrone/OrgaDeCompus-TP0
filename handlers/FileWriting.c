@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 void writeArray( FILE* fp,char* array ){
     
     char string[4];

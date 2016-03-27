@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <getopt.h>
+#include "converters/ConvertersFacade.h"
 //#include "ascii_64.h"
 
 #define HELP_LENGTH 297
@@ -74,39 +75,18 @@ int main (int argc, char *argv[]) {
   } else if (version) {
     show_version();
   } else if (input && output && decode) {
+    // Decodificacion
     //64_2_ascii(input_file, output_file);
+    codificateBase64toASCII(input_file, output_file);
   } else if (input && output) {
+    // Codificacion
     //ascii_2_64(input_file, output_file);
+    codificateASCIItoBase64(input_file, output_file);
   } else if (!feof(stdin)) {
     /*
      * ascii_2_64(NULL, NULL);
      * Cuando input_file y output_file == NULL que mande el resultado por stdout ¿?
      */
   }
-  /*
-  // Codificacion
-  // Variables
-  FILE* readableFile; 
-  FILE* writableFile;
-  char charArray[4];      // La posicion 0 es para la longitud.
-  char processedArray[4]; // 4 caracteres codificados en base 64.
-  // Fin Variables
-  
-  openReadableFile(readableFile);
-  openWritableFile(writableFile);
-  
-  while( !feof(fp) ){
-      
-      getArrayOfCaracters(fp, charArray );
-      processArray( charArray, processedArray ); // Falta
-      writeArray(processedArray);
-      
-      
-  }
-   
-  fclose(readableFile);
-  fclose(writableFile);
-  */
-  
   return EXIT_SUCCESS;
 }
