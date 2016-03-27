@@ -5,203 +5,204 @@
  *      Author: luciano
  */
 
-const char* symbolInBase24ForInt (int number){
+char symbolInBase24ForInt (int number){
 	switch(number) {
 		case 0:
-			return "A";
+			return 'A';
 		    break;
 		case 1:
-			return "B";
+			return 'B';
 			break;
 		case 2:
-			return "C";
+			return 'C';
 			break;
 		case 3:
-			return "D";
+			return 'D';
 			break;
 		case 4:
-			return "E";
+			return 'E';
 			break;
 		case 5:
-			return "F";
+			return 'F';
 			break;
 		case 6:
-			return "G";
+			return 'G';
 			break;
 		case 7:
-			return "H";
+			return 'H';
 			break;
 		case 8:
-			return "I";
+			return 'I';
 			break;
 		case 9:
-			return "J";
+			return 'J';
 			break;
 		case 10:
-			return "K";
+			return 'K';
 			break;
 		case 11:
-			return "L";
+			return 'L';
 			break;
 		case 12:
-			return "M";
+			return 'M';
 			break;
 		case 13:
-			return "N";
+			return 'N';
 			break;
 		case 14:
-			return "O";
+			return 'O';
 			break;
 		case 15:
-			return "P";
+			return 'P';
 			break;
 		case 16:
-			return "Q";
+			return 'Q';
 			break;
 		case 17:
-			return "R";
+			return 'R';
 			break;
 		case 18:
-			return "S";
+			return 'S';
 			break;
 		case 19:
-			return "T";
+			return 'T';
 			break;
 		case 20:
-			return "U";
+			return 'U';
 			break;
 		case 21:
-			return "V";
+			return 'V';
 			break;
 		case 22:
-			return "W";
+			return 'W';
 			break;
 		case 23:
-			return "X";
+			return 'X';
 			break;
 		case 24:
-			return "Y";
+			return 'Y';
 			break;
 		case 25:
-			return "Z";
+			return 'Z';
 			break;
 		case 26:
-			return "a";
+			return 'a';
 			break;
 		case 27:
-			return "b";
+			return 'b';
 			break;
 		case 28:
-			return "c";
+			return 'c';
 			break;
 		case 29:
-			return "d";
+			return 'd';
 			break;
 		case 30:
-			return "e";
+			return 'e';
 			break;
 		case 31:
-			return "f";
+			return 'f';
 			break;
 		case 32:
-			return "g";
+			return 'g';
 			break;
 		case 33:
-			return "h";
+			return 'h';
 			break;
 		case 34:
-			return "i";
+			return 'i';
 			break;
 		case 35:
-			return "j";
+			return 'j';
 			break;
 		case 36:
-			return "k";
+			return 'k';
 			break;
 		case 37:
-			return "l";
+			return 'l';
 			break;
 		case 38:
-			return "m";
+			return 'm';
 			break;
 		case 39:
-			return "n";
+			return 'n';
 			break;
 		case 40:
-			return "o";
+			return 'o';
 			break;
 		case 41:
-			return "p";
+			return 'p';
 			break;
 		case 42:
-			return "q";
+			return 'q';
 			break;
 		case 43:
-			return "r";
+			return 'r';
 			break;
 		case 44:
-			return "s";
+			return 's';
 			break;
 		case 45:
-			return "t";
+			return 't';
 			break;
 		case 46:
-			return "u";
+			return 'u';
 			break;
 		case 47:
-			return "v";
+			return 'v';
 			break;
 		case 48:
-			return "w";
+			return 'w';
 			break;
 		case 49:
-			return "x";
+			return 'x';
 			break;
 		case 50:
-			return "y";
+			return 'y';
 			break;
 		case 51:
-			return "z";
+			return 'z';
 			break;
 		case 52:
-			return "0";
+			return '0';
 			break;
 		case 53:
-			return "1";
+			return '1';
 			break;
 		case 54:
-			return "2";
+			return '2';
 			break;
 		case 55:
-			return "3";
+			return '3';
 			break;
 		case 56:
-			return "4";
+			return '4';
 			break;
 		case 57:
-			return "5";
+			return '5';
 			break;
 		case 58:
-			return "6";
+			return '6';
 			break;
 		case 59:
-			return "7";
+			return '7';
 			break;
 		case 60:
-			return "8";
+			return '8';
 			break;
 		case 61:
-			return "9";
+			return '9';
 			break;
 		case 62:
-			return "+";
+			return '+';
 			break;
 		case 63:
-			return "/";
+			return '/';
 			break;
 		default:
-			return "A";
+			return 'A';
 			break;
 	}
+	return 'A';
 }
 

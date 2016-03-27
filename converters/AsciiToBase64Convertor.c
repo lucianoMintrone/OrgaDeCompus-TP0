@@ -30,15 +30,15 @@ void convertAsciiTextToBase24 (char *asciiCharArray, char *processedArray) {
 			charRead = asciiCharArray[1];
 			lastPartOfCurrentReadingByte = charRead&3;
 			byteToConvert = numberToBeConvert(charRead, 2, lastPartOfPreviousReadByte);
-			printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
+			processedArray[0] = symbolInBase24ForInt(byteToConvert);
 			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
 
 			// Complete with two '='
 			byteToConvert = numberToBeConvertForLastByte(lastPartOfPreviousReadByte, 4);
 
-			printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
-			printf("Your symbol in base 64 is =\n");
-			printf("Your symbol in base 64 is =\n");
+			processedArray[1] = symbolInBase24ForInt(byteToConvert);
+			processedArray[2] = '=';
+			processedArray[3] = '=';
 		}
 			break;
 		case 2: {
@@ -46,21 +46,21 @@ void convertAsciiTextToBase24 (char *asciiCharArray, char *processedArray) {
 			charRead = asciiCharArray[1];
 			lastPartOfCurrentReadingByte = charRead&3;
 			byteToConvert = numberToBeConvert(charRead, 2, lastPartOfPreviousReadByte);
-			printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
+			processedArray[0] = symbolInBase24ForInt(byteToConvert);
 			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
 
 			// Second Char
 			charRead = asciiCharArray[2];
 			lastPartOfCurrentReadingByte = charRead&15;
 			byteToConvert = numberToBeConvert(charRead, 4, lastPartOfPreviousReadByte);
-			printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
+			processedArray[1] = symbolInBase24ForInt(byteToConvert);
 			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
 
 			// Complete with one '='
 			byteToConvert = numberToBeConvertForLastByte(lastPartOfPreviousReadByte, 2);
 
-			printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
-			printf("Your symbol in base 64 is =\n");
+			processedArray[2] = symbolInBase24ForInt(byteToConvert);
+			processedArray[3] = '=';
 		}
 			break;
 		case 3: {
@@ -68,14 +68,14 @@ void convertAsciiTextToBase24 (char *asciiCharArray, char *processedArray) {
 			charRead = asciiCharArray[1];
 			lastPartOfCurrentReadingByte = charRead&3;
 			byteToConvert = numberToBeConvert(charRead, 2, lastPartOfPreviousReadByte);
-			printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
+			processedArray[0] = symbolInBase24ForInt(byteToConvert);
 			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
 
 			// Second Char
 			charRead = asciiCharArray[2];
 			lastPartOfCurrentReadingByte = charRead&15;
 			byteToConvert = numberToBeConvert(charRead, 4, lastPartOfPreviousReadByte);
-			printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
+			processedArray[1] = symbolInBase24ForInt(byteToConvert);
 			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
 
 			// Third Char
@@ -83,12 +83,10 @@ void convertAsciiTextToBase24 (char *asciiCharArray, char *processedArray) {
 			lastPartOfCurrentReadingByte = charRead&63;
 			byteToConvert = numberToBeConvert(charRead, 6, lastPartOfPreviousReadByte);
 
-			printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
-			byteToConvert = lastPartOfCurrentReadingByte;
-			printf("Your symbol in base 64 is %s\n", symbolInBase24ForInt(byteToConvert));
+			processedArray[2] = symbolInBase24ForInt(byteToConvert);
 
-			lastPartOfCurrentReadingByte = 0;
-			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
+			byteToConvert = lastPartOfCurrentReadingByte;
+			processedArray[3] = symbolInBase24ForInt(byteToConvert);
 		}
 			break;
 	}

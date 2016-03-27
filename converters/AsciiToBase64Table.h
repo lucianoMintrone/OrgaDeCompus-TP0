@@ -8,6 +8,6 @@
 #ifndef ASCIITOBASE64CONVERTER_H_
 #define ASCIITOBASE64CONVERTER_H_
 
-const char* symbolInBase24ForInt (int number);
+char symbolInBase24ForInt (int number);
 
 #endif /* ASCIITOBASE64CONVERTER_H_ */
