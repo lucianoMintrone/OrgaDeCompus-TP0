@@ -8,6 +8,6 @@
 #ifndef BASE24TOASCIICONVERTOR_H_
 #define BASE24TOASCIICONVERTOR_H_
 
-void typeTextToConvertToAscii();
+void convertBase24TextToAscii (char *base24CharArray, char *processedArray);
 
 #endif /* BASE24TOASCIICONVERTOR_H_ */

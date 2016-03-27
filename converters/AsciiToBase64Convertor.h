@@ -8,6 +8,6 @@
 #ifndef ASCIITOBASE64CONVERTOR_H_
 #define ASCIITOBASE64CONVERTOR_H_
 
-void typeTextToConvertToBase24();
+void convertAsciiTextToBase24 (char *asciiCharArray, char *processedArray);
 
 #endif /* ASCIITOBASE64CONVERTOR_H_ */
