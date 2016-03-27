@@ -1,26 +1,11 @@
 #ifndef FILE_HANDLER_H
 #define FILE_HANDLER_H
 
-#include <stddef.h>
-#include <stdio.h>
-#include <stdbool.h>
+void getArrayOfCaracters (FILE* fp, char* charArray);
 
-typedef struct _file_handler {
-	FILE* fp;
-	size_t block_size;
-} file_handler_t;
+void verifyArrayData(char* charArray);
 
-bool file_handler_init(file_handler_t* self, char* file_name, 
-						char* mode, size_t block_size);
+void writeArray(FILE* fp,char* array);
 
-bool file_handler_read(file_handler_t* self, char* block);
+#endif //FILE_HANDLER_H
 
-bool file_handler_write(file_handler_t* self, char* block);
-
-size_t file_handler_size(file_handler_t* self);
-
-bool file_handler_eof(file_handler_t* self);
-
-void file_handler_destroy(file_handler_t* self);
-
-#endif // FILE_HANDLER_H

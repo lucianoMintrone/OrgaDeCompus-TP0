@@ -1,43 +1,44 @@
-#include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 #include "file_handler.h"
 
-#define ACCOUNT_THE_END_OF_STR 1
-
-bool file_handler_init(file_handler_t* self, char* file_name, 
-			char* mode, size_t block_size) {
-	self->fp = fopen(file_name, mode);
-	if (!self->fp) return false;
-	self->block_size = block_size;
-	return true;
+// En charArray aloca 3 caracteres de un .txt, posiciones 1 2 3.
+// La posicion 0 esta reservada para la longitud logica.
+void getArrayOfCaracters (FILE* fp, char* charArray) {
+    int i = 0;
+       
+    while(!feof(fp) && i != 3){     
+        charArray[i + 1] = fgetc(fp);        
+        i++;
+    }
+    verifyArrayData(&charArray);
 }
 
-bool file_handler_read(file_handler_t* self, char* block) {
-	if (fgets(block, self->block_size + ACCOUNT_THE_END_OF_STR, self->fp))
-		return true;
-	return false;
+
+// Remueve el -1 que indica EOF.
+// Y en la posicion cero setea la longitud logica, cantidad de valores validos.
+void verifyArrayData(char* charArray) {
+    int i = 1;
+    bool loop = true;
+    charArray[0] = 3;
+    
+    while ((i <= 3) && loop) {
+        
+        if (charArray[i] == -1) {
+            loop = false;
+            charArray[0] = i - 1;
+        }
+        i++;
+    }
 }
 
-bool file_handler_write(file_handler_t* self, char* block) {
-	if (fputs(block, self->fp) > 0);
-		return true;
-	return false;
-}
-
-size_t file_handler_size(file_handler_t* self) {
-	long pos = ftell(self->fp);
-	fseek(self->fp, 0, SEEK_END);
-	long size = ftell(self->fp);
-	fseek(self->fp, pos, SEEK_SET);
-	return size;
-}
-
-bool file_handler_eof(file_handler_t* self) {
-	return ftell(self->fp) == file_handler_size(self);
-}
-
-void file_handler_destroy(file_handler_t* self) {
-	fclose(self->fp);
+void writeArray(FILE* fp,char* array) {
+    char string[4];
+    
+    for (int i = 0; i < 4; i++)
+		string [i] = array [i];
+    
+    fprintf(fp, "%s", string); 
 }
