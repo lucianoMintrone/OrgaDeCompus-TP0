@@ -75,12 +75,8 @@ int main (int argc, char *argv[]) {
   } else if (version) {
     show_version();
   } else if (input && output && decode) {
-    // Decodificacion
-    //64_2_ascii(input_file, output_file);
     codificateBase64toASCII(input_file, output_file);
   } else if (input && output) {
-    // Codificacion
-    //ascii_2_64(input_file, output_file);
     codificateASCIItoBase64(input_file, output_file);
   } else if (!feof(stdin)) {
     /*
