@@ -21,7 +21,7 @@ void verifyArrayData(char* charArray) {
     bool loop = true;
     charArray[0] = 3;
     
-    for (i = 1; i <= 4 && loop; i++) {
+    for (i = 1; i < 4 && loop; i++) {
         if (charArray[i] == -1) {
             loop = false;
             charArray[0] = i - 1;
