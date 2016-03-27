@@ -105,12 +105,12 @@ void decode_64_to_ascii(char *base24CharArray, char *processedArray) {
 
 	// Read first Symbol
 	charRead = base24CharArray[1];
-	int firstNumberFromSymbol = numberForSymbolInBase24(charRead);
+	int firstNumberFromSymbol = ascii_to_64(charRead);
 	firstNumberFromSymbol = firstNumberFromSymbol<<2;
 
 	// Read Second Symbol
 	otherCharRead = base24CharArray[2];
-	secondNumberFromSymbol = numberForSymbolInBase24(otherCharRead);
+	secondNumberFromSymbol = ascii_to_64(otherCharRead);
 	int firstPartOfSymbol = secondNumberFromSymbol;
 	firstPartOfSymbol = firstPartOfSymbol>>4;
 	processedArray[1] = firstNumberFromSymbol + firstPartOfSymbol;
@@ -121,7 +121,7 @@ void decode_64_to_ascii(char *base24CharArray, char *processedArray) {
 		numberFromSymbol = secondNumberFromSymbol&15;
 		numberFromSymbol = numberFromSymbol<<4;
 		charRead = base24CharArray[3];
-		secondNumberFromSymbol = numberForSymbolInBase24(charRead);
+		secondNumberFromSymbol = ascii_to_64(charRead);
 		int firstPartOfSymbol = secondNumberFromSymbol;
 		firstPartOfSymbol = firstPartOfSymbol>>2;
 		processedArray[2] = numberFromSymbol + firstPartOfSymbol;
@@ -133,7 +133,7 @@ void decode_64_to_ascii(char *base24CharArray, char *processedArray) {
 		numberFromSymbol = secondNumberFromSymbol&3;
 		numberFromSymbol = numberFromSymbol<<6;
 		charRead = base24CharArray[4];
-		secondNumberFromSymbol = numberForSymbolInBase24(charRead);
+		secondNumberFromSymbol = ascii_to_64(charRead);
 		processedArray[3] = numberFromSymbol + secondNumberFromSymbol;
 		processedArray[0] = 3;
 	}
