@@ -36,53 +36,50 @@ void show_help() {
   fclose(fp);
 }
 
-void encodeASCIItoBase64(char* input_file, char* output_file) {
-  FILE* readableFile; 
-  FILE* writableFile;
-  char charArray[4];      // La posicion 0 es para la longitud.
-  char processedArray[4]; // 4 caracteres codificados en base 64.
+void encode(char* input_file, char* output_file) {
+  FILE* input; 
+  FILE* output;
+  char arr[4]; // La posicion 0 es para la longitud.
+  char processed[4]; // 4 caracteres codificados en base 64.
   
-  readableFile = fopen("files/%s",input_file , "r");
-  writableFile = fopen("files/%s",output_file , "w");
+  input = fopen(input_file, "r");
+  output = fopen(output_file, "w");
   
-  while( !feof(readableFile) ){
-      
-      getArrayOfCaracters(readableFile, charArray );
-      processArrayForCodification( charArray, processedArray );
-      writeArray(writableFile, processedArray);
+  while(!feof(input)) {
+      getArrayOfCaracters(input, arr);
+      process_for_encoding(arr, processed);
+      writeArray(output, processed);
+  }
+   
+  fclose(input);
+  fclose(output);
+}
+
+void decode(char* input_file, char* output_file) {
+  FILE* input; 
+  FILE* output;
+  char arr[4];      // 4 caracteres codificados en base 64.
+  char processed[3]; // 3 caracteres codificados en ASCII.
+
+  input = fopen(input_file , "r");
+  output = fopen(output_file , "w");
+  
+  while(!feof(input)) {
+      getArrayOfCaracters(input, arr);
+      process_for_decoding(arr, processed);
+      writeArray(output, processed);
       
   }
    
-  fclose(readableFile);
-  fclose(writableFile);
+  fclose(input);
+  fclose(output);
 }
 
-void decodeBase64toASCII(char* input_file,char* output_file) {
-  FILE* readableFile; 
-  FILE* writableFile;
-  char charArray[4];      // 4 caracteres codificados en base 64.
-  char processedArray[3]; // 3 caracteres codificados en ASCII.
-
-  readableFile = fopen("files/%s",input_file , "r");
-  writableFile = fopen("files/%s",output_file , "w");
-  
-  while( !feof(readableFile) ){
-      
-      getArrayOfCaracters(readableFile, charArray );
-      processArrayForDecodification( charArray, processedArray );
-      writeArray(writableFile, processedArray);
-      
-  }
-   
-  fclose(readableFile);
-  fclose(writableFile);
-}
-
-void processArrayForEncoding(char* charArray, char* processedArray) {
+void process_for_encoding(char* charArray, char* processedArray) {
     
 }
 
-void processArrayForDecoding(char* charArray, char* processedArray) {
+void process_for_decoding(char* charArray, char* processedArray) {
     
 }
 
@@ -126,9 +123,9 @@ int main (int argc, char *argv[]) {
   } else if (version) {
     show_version();
   } else if (input && output && decode) {
-    codificateBase64toASCII(input_file, output_file);
+    decode(input_file, output_file);
   } else if (input && output) {
-    codificateASCIItoBase64(input_file, output_file);
+    encode(input_file, output_file);
   } else if (!feof(stdin)) {
     /*
      * ascii_2_64(NULL, NULL);
