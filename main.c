@@ -47,7 +47,7 @@ void encode(char* input_file, char* output_file) {
   
   while(!feof(input)) {
       getArrayOfCaracters(input, arr);
-      process_for_encoding(arr, processed);
+      encode_ascii_to_64(arr, processed);
       writeArray(output, processed);
   }
    
@@ -66,21 +66,13 @@ void decode(char* input_file, char* output_file) {
   
   while(!feof(input)) {
       getArrayOfCaracters(input, arr);
-      process_for_decoding(arr, processed);
+      decode_64_to_ascii(arr, processed);
       writeArray(output, processed);
       
   }
    
   fclose(input);
   fclose(output);
-}
-
-void process_for_encoding(char* charArray, char* processedArray) {
-    
-}
-
-void process_for_decoding(char* charArray, char* processedArray) {
-    
 }
 
 int main (int argc, char *argv[]) {
