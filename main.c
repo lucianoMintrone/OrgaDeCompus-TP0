@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <getopt.h>
 
-#include "converters/ascii_64.h"
+#include "converters/ascii_64_converter.h"
 #include "handlers/file_handler.h"
 
 #define HELP_LENGTH 297
@@ -16,9 +16,10 @@ void show_version() {
 
 size_t fsize(FILE* fp) {
   size_t size;
+  size_t pos = ftell(fp);
   fseek(fp, 0, SEEK_END);
-  size = ftell (fp);
-  rewind(fp);
+  size = ftell(fp);
+  fseek(fp, pos, SEEK_SET);//rewind(fp);
   return size;
 }
 
@@ -36,7 +37,7 @@ void show_help() {
   fclose(fp);
 }
 
-void encode(char* input_file, char* output_file) {
+void encode_64_to_ascii(char* input_file, char* output_file) {
   FILE* input; 
   FILE* output;
   char arr[4]; // La posicion 0 es para la longitud.
@@ -45,9 +46,9 @@ void encode(char* input_file, char* output_file) {
   input = fopen(input_file, "r");
   output = fopen(output_file, "w");
   
-  while(!feof(input)) {
+  for (int i = 0; i < fsize(input); i+= 3) {
       getArrayOfCaracters(input, arr);
-      encode_ascii_to_64(arr, processed);
+      _encode_ascii_to_64(arr, processed);
       writeArray(output, processed);
   }
    
@@ -55,19 +56,19 @@ void encode(char* input_file, char* output_file) {
   fclose(output);
 }
 
-void decode(char* input_file, char* output_file) {
+void decode_64_to_ascii(char* input_file, char* output_file) {
   FILE* input; 
   FILE* output;
   char arr[4];      // 4 caracteres codificados en base 64.
-  char processed[3]; // 3 caracteres codificados en ASCII.
+  char processed[4]; // 3 caracteres codificados en ASCII.
 
   input = fopen(input_file , "r");
   output = fopen(output_file , "w");
   
-  while(!feof(input)) {
-      getArrayOfCaracters(input, arr);
-      decode_64_to_ascii(arr, processed);
-      writeArray(output, processed);
+  for (int i = 0; i < fsize(input); i+= 4) {
+      getArrayOfCaractersD(input, arr);
+      _decode_64_to_ascii(arr, processed);
+      writeArrayD(output, processed);
       
   }
    
@@ -115,9 +116,9 @@ int main (int argc, char *argv[]) {
   } else if (version) {
     show_version();
   } else if (input && output && decode) {
-    decode(input_file, output_file);
+    decode_64_to_ascii(input_file, output_file);
   } else if (input && output) {
-    encode(input_file, output_file);
+    encode_64_to_ascii(input_file, output_file);
   } else if (!feof(stdin)) {
     /*
      * ascii_2_64(NULL, NULL);

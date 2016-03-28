@@ -8,10 +8,28 @@
 // La posicion 0 esta reservada para la longitud logica.
 void getArrayOfCaracters(FILE* fp, char* charArray) {
 	
-    for (int i = 1; !feof(fp) && i < 4; i++)     
+    for (int i = 1; i < 4; i++) {     
+		
         charArray[i] = fgetc(fp);
+        
+	}
+	
+		
+    verifyArrayData(charArray);
+    
+}
 
-    verifyArrayData(&charArray);
+void getArrayOfCaractersD(FILE* fp, char* charArray) {
+	
+    for (int i = 1; i < 5; i++) {     
+		
+        charArray[i] = fgetc(fp);
+        
+	}
+	
+		
+    verifyArrayData(charArray);
+    
 }
 
 
@@ -21,7 +39,7 @@ void verifyArrayData(char* charArray) {
     bool loop = true;
     charArray[0] = 3;
     
-    for (i = 1; i < 4 && loop; i++) {
+    for (int i = 1; i < 4 && loop; i++) {
         if (charArray[i] == -1) {
             loop = false;
             charArray[0] = i - 1;
@@ -30,11 +48,23 @@ void verifyArrayData(char* charArray) {
 }
 
 void writeArray(FILE* fp, char* array) {
-	/*
+
     char string[4];
     
     for (int i = 0; i < 4; i++)
 		string[i] = array[i];
-    */
-    fprintf(fp, "%s", array); // No es lo mismo?
+
+    fprintf(fp, "%s", string);
+}
+
+void writeArrayD(FILE* fp, char* array) {
+
+	printf("%d", array[0]);
+    char string[array[0]];
+    
+    for (int i = 1; i < array[0]; i++)
+		string[i] = array[i];
+	
+	printf("%s\n", string);
+    fprintf(fp, "%s", string);
 }

@@ -1,7 +1,7 @@
 #include "ascii_64_tables.h"
 
 int ascii_to_64 (char c) {
-	switch(n) {
+	switch(c) {
 		case '=':
 			return 0;
 		case 'A':
@@ -137,7 +137,7 @@ int ascii_to_64 (char c) {
 	}
 }
 
-char 64_to_ascii (int n) {
+char _64_to_ascii (int n) {
 	switch(n) {
 		case 0:
 			return 'A';

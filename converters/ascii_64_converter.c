@@ -18,7 +18,7 @@ static int numberToBeConvertForLastByte (int lastPartOfPreviousReadByte ,int num
 
 }
 
-void encode_ascii_to_64(char *asciiCharArray, char *processedArray) {
+void _encode_ascii_to_64(char *asciiCharArray, char *processedArray) {
 	int lastPartOfCurrentReadingByte;
 	int lastPartOfPreviousReadByte = 0;
 	int byteToConvert;
@@ -33,13 +33,13 @@ void encode_ascii_to_64(char *asciiCharArray, char *processedArray) {
 			charRead = asciiCharArray[1];
 			lastPartOfCurrentReadingByte = charRead&3;
 			byteToConvert = numberToBeConvert(charRead, 2, lastPartOfPreviousReadByte);
-			processedArray[0] = 64_to_ascii(byteToConvert);
+			processedArray[0] = _64_to_ascii(byteToConvert);
 			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
 
 			// Complete with two '='
 			byteToConvert = numberToBeConvertForLastByte(lastPartOfPreviousReadByte, 4);
 
-			processedArray[1] = 64_to_ascii(byteToConvert);
+			processedArray[1] = _64_to_ascii(byteToConvert);
 			processedArray[2] = '=';
 			processedArray[3] = '=';
 		}
@@ -49,20 +49,20 @@ void encode_ascii_to_64(char *asciiCharArray, char *processedArray) {
 			charRead = asciiCharArray[1];
 			lastPartOfCurrentReadingByte = charRead&3;
 			byteToConvert = numberToBeConvert(charRead, 2, lastPartOfPreviousReadByte);
-			processedArray[0] = 64_to_ascii(byteToConvert);
+			processedArray[0] = _64_to_ascii(byteToConvert);
 			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
 
 			// Second Char
 			charRead = asciiCharArray[2];
 			lastPartOfCurrentReadingByte = charRead&15;
 			byteToConvert = numberToBeConvert(charRead, 4, lastPartOfPreviousReadByte);
-			processedArray[1] = 64_to_ascii(byteToConvert);
+			processedArray[1] = _64_to_ascii(byteToConvert);
 			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
 
 			// Complete with one '='
 			byteToConvert = numberToBeConvertForLastByte(lastPartOfPreviousReadByte, 2);
 
-			processedArray[2] = 64_to_ascii(byteToConvert);
+			processedArray[2] = _64_to_ascii(byteToConvert);
 			processedArray[3] = '=';
 		}
 			break;
@@ -71,14 +71,14 @@ void encode_ascii_to_64(char *asciiCharArray, char *processedArray) {
 			charRead = asciiCharArray[1];
 			lastPartOfCurrentReadingByte = charRead&3;
 			byteToConvert = numberToBeConvert(charRead, 2, lastPartOfPreviousReadByte);
-			processedArray[0] = 64_to_ascii(byteToConvert);
+			processedArray[0] = _64_to_ascii(byteToConvert);
 			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
 
 			// Second Char
 			charRead = asciiCharArray[2];
 			lastPartOfCurrentReadingByte = charRead&15;
 			byteToConvert = numberToBeConvert(charRead, 4, lastPartOfPreviousReadByte);
-			processedArray[1] = 64_to_ascii(byteToConvert);
+			processedArray[1] = _64_to_ascii(byteToConvert);
 			lastPartOfPreviousReadByte = lastPartOfCurrentReadingByte;
 
 			// Third Char
@@ -86,16 +86,16 @@ void encode_ascii_to_64(char *asciiCharArray, char *processedArray) {
 			lastPartOfCurrentReadingByte = charRead&63;
 			byteToConvert = numberToBeConvert(charRead, 6, lastPartOfPreviousReadByte);
 
-			processedArray[2] = 64_to_ascii(byteToConvert);
+			processedArray[2] = _64_to_ascii(byteToConvert);
 
 			byteToConvert = lastPartOfCurrentReadingByte;
-			processedArray[3] = 64_to_ascii(byteToConvert);
+			processedArray[3] = _64_to_ascii(byteToConvert);
 		}
 			break;
 	}
 }
 
-void decode_64_to_ascii(char *base24CharArray, char *processedArray) {
+void _decode_64_to_ascii(char *base24CharArray, char *processedArray) {
 	processedArray[0] = 0;
 	char charRead;
 	char otherCharRead;
