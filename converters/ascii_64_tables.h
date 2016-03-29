@@ -1,8 +1,8 @@
 #ifndef ASCII_64_TABLES_H
 #define ASCII_64_TABLES_H
 
-int ascii_to_64 (char c);
+int _64_to_ascii (char c);
 
-char _64_to_ascii (int n);
+char ascii_to_64 (int n);
 
 #endif // ASCII_64_TABLES_H

@@ -11,7 +11,7 @@ void writeArray(FILE* fp,char* array);
 
 void writeArrayD(FILE* fp,char* array);
 
-void getArrayOfCaractersD(FILE* fp, char* charArray) ;
+void getArrayOfCaractersD(FILE* fp, char* charArray);
 
 #endif //FILE_HANDLER_H
 

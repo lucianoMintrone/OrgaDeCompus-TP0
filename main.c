@@ -37,7 +37,7 @@ void show_help() {
   fclose(fp);
 }
 
-void encode_64_to_ascii(char* input_file, char* output_file) {
+void encode_ascii_to_64(char* input_file, char* output_file) {
   FILE* input; 
   FILE* output;
   char arr[4]; // La posicion 0 es para la longitud.
@@ -63,13 +63,12 @@ void decode_64_to_ascii(char* input_file, char* output_file) {
   char processed[4]; // 3 caracteres codificados en ASCII.
 
   input = fopen(input_file , "r");
-  output = fopen(output_file , "w");
-  
+  output = fopen(output_file , "w"); 
+ 
   for (int i = 0; i < fsize(input); i+= 4) {
       getArrayOfCaractersD(input, arr);
       _decode_64_to_ascii(arr, processed);
       writeArrayD(output, processed);
-      
   }
    
   fclose(input);
@@ -116,9 +115,9 @@ int main (int argc, char *argv[]) {
   } else if (version) {
     show_version();
   } else if (input && output && decode) {
-    decode_64_to_ascii(input_file, output_file);
+    //decode_64_to_ascii(input_file, output_file);
   } else if (input && output) {
-    encode_64_to_ascii(input_file, output_file);
+    //encode_ascii_to_64(input_file, output_file);
   } else if (!feof(stdin)) {
     /*
      * ascii_2_64(NULL, NULL);
