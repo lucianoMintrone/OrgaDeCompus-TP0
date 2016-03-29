@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <getopt.h>
 
-#include "converters/ascii_64_converter.h"
+#include "converter/ascii_64_converter.h"
 #include "handlers/file_handler.h"
 
 #define HELP_LENGTH 297
