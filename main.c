@@ -9,18 +9,15 @@
 
 #define HELP_LENGTH 297
 #define VERSION 1.0
+#define ENCODE_BLOCK_LENGTH 3
+#define DECODE_BLOCK_LENGTH 4
+#define READ_ENCODE_LENGTH 4
+#define RESULT_ENCODE_LENGTH 5
+#define READ_DECODE_LENGTH 5
+#define RESULT_DECODE_LENGTH 4
 
 void show_version() {
     printf("v%f\n", VERSION);
-}
-
-size_t fsize(FILE* fp) {
-  size_t size;
-  size_t pos = ftell(fp);
-  fseek(fp, 0, SEEK_END);
-  size = ftell(fp);
-  fseek(fp, pos, SEEK_SET);//rewind(fp);
-  return size;
 }
 
 void show_help() {
@@ -38,18 +35,17 @@ void show_help() {
 }
 
 void encode_ascii_to_64(char* input_file, char* output_file) {
-  FILE* input; 
-  FILE* output;
-  char arr[4]; // La posicion 0 es para la longitud.
-  char processed[4]; // 4 caracteres codificados en base 64.
+  char arr[READ_ENCODE_LENGTH], processed[RESULT_ENCODE_LENGTH];
+  arr[READ_ENCODE_LENGTH - 1] = '\0';
+  processed[RESULT_ENCODE_LENGTH - 1] = '\0';
+  FILE* input = fopen(input_file, "r");
+  FILE* output = fopen(output_file, "w");
+  size_t read_size;
   
-  input = fopen(input_file, "r");
-  output = fopen(output_file, "w");
-  
-  for (int i = 0; i < fsize(input); i+= 3) {
-      getArrayOfCaracters(input, arr);
-      _encode_ascii_to_64(arr, processed);
-      writeArray(output, processed);
+  for (int i = 0; i < fsize(input) / ENCODE_BLOCK_LENGTH; i ++) {
+      read_size = get_encode_chars(input, arr);
+      _encode_ascii_to_64(arr, read_size, processed);
+      write_code(output, processed);
   }
    
   fclose(input);
@@ -57,18 +53,17 @@ void encode_ascii_to_64(char* input_file, char* output_file) {
 }
 
 void decode_64_to_ascii(char* input_file, char* output_file) {
-  FILE* input; 
-  FILE* output;
-  char arr[4];      // 4 caracteres codificados en base 64.
-  char processed[4]; // 3 caracteres codificados en ASCII.
-
-  input = fopen(input_file , "r");
-  output = fopen(output_file , "w"); 
+  char arr[READ_DECODE_LENGTH], processed[RESULT_DECODE_LENGTH]; // 3 caracteres codificados en ASCII.
+  arr[READ_DECODE_LENGTH - 1] = '\0';
+  processed[RESULT_DECODE_LENGTH - 1] = '\0';
+  FILE* input = fopen(input_file, "r");
+  FILE* output = fopen(output_file, "w");
+  size_t write_size;
  
-  for (int i = 0; i < fsize(input); i+= 4) {
-      getArrayOfCaractersD(input, arr);
-      _decode_64_to_ascii(arr, processed);
-      writeArrayD(output, processed);
+  for (int i = 0; i < fsize(input) / DECODE_BLOCK_LENGTH; i ++) {
+      get_decode_chars(input, arr);
+      write_size = _decode_64_to_ascii(arr, processed);
+      write_decode(output, write_size, processed);
   }
    
   fclose(input);
@@ -115,9 +110,9 @@ int main (int argc, char *argv[]) {
   } else if (version) {
     show_version();
   } else if (input && output && decode) {
-    //decode_64_to_ascii(input_file, output_file);
+    decode_64_to_ascii(input_file, output_file);
   } else if (input && output) {
-    //encode_ascii_to_64(input_file, output_file);
+    encode_ascii_to_64(input_file, output_file);
   } else if (!feof(stdin)) {
     /*
      * ascii_2_64(NULL, NULL);

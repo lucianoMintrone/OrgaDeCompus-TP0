@@ -1,56 +1,35 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include <string.h>
 
-//#include "file_handler.h"
+#include "file_handler.h"
 
-// En charArray aloca 3 caracteres de un .txt, posiciones 1 2 3.
-// La posicion 0 esta reservada para la longitud logica.
-void getArrayOfCaracters(FILE* fp, char* charArray) {
+#define ENCODE_READ_LENGTH 4
+#define DECODE_READ_LENGTH 5 // se suma uno por el /0
 
-	int i;
-    for (i = 1; i < 4; i++)
-        charArray[i] = fgetc(fp);
-
-    verifyArrayData(charArray);
+size_t get_encode_chars(FILE* fp, char* str) {
+	fgets(str, ENCODE_READ_LENGTH, fp);
+	return strlen(str);
 }
 
-void getArrayOfCaractersD(FILE* fp, char* charArray) {
-	int i;
-    for (i = 0; i < 4; i++)
-        charArray[i] = (char)fgetc(fp);
+size_t get_decode_chars(FILE* fp, char* str) {
+	fgets(str, DECODE_READ_LENGTH, fp);
+	return strlen(str);
 }
 
-// Remueve el -1 que indica EOF.
-// Y en la posicion cero setea la longitud logica, cantidad de valores validos.
-void verifyArrayData(char* charArray) {
-    bool loop = true;
-    charArray[0] = 3;
-    int i;
-    for (i = 1; i < 4 && loop; i++) {
-        if (charArray[i] == -1) {
-            loop = false;
-            charArray[0] = i - 1;
-        }
-    }
+void write_code(FILE* fp, char* str) {
+	fputs(str, fp);
 }
 
-void writeArray(FILE* fp, char* array) {
-
-    char string[4];
-    int i;
-    for (i = 0; i < 4; i++)
-		string[i] = array[i];
-
-    fprintf(fp, "%s", string);
+void write_decode(FILE* fp, size_t write_size, char* str) {
+	for (int i = 0; i < write_size; i++)
+		fputc(str[i], fp);
 }
 
-void writeArrayD(FILE* fp, char* array) {
-    char string[array[0]];
-
-    int i;
-    for (i = 1; i <= array[0]; i++) {
-		string[i] = array[i];
-	    fprintf(fp, "%c", string[i]);
-    }
+size_t fsize(FILE* fp) {
+  size_t size;
+  size_t pos = ftell(fp);
+  fseek(fp, 0, SEEK_END);
+  size = ftell(fp);
+  fseek(fp, pos, SEEK_SET);
+  return size;
 }
