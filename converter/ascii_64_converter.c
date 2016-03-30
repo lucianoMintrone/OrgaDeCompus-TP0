@@ -13,7 +13,7 @@ static int numberToBeConvert(char charRead, int numberOfShiftsToTheRigth , int l
 	return firstPartOfCurrentReadingByte + lastPartOfPreviousReadByte;
 }
 
-static int numberToBeConvertForLastByte (int lastPartOfPreviousReadByte ,int numberOfShiftsToTheLeft) {
+static int numberToBeConvertForLastByte(int lastPartOfPreviousReadByte ,int numberOfShiftsToTheLeft) {
 	return lastPartOfPreviousReadByte = lastPartOfPreviousReadByte<<numberOfShiftsToTheLeft;
 
 }

@@ -57,13 +57,14 @@ void encode_ascii_to_64(char* input_file, char* output_file) {
 		_encode_ascii_to_64(arr, read_size, processed);
 		write_code(output, processed);
 	}
-   
+	if (!input_file && !output_file) putc('\n', output);
+	
 	fclose(input);
 	fclose(output);
 }
 
 void decode_64_to_ascii(char* input_file, char* output_file) {
-	char arr[READ_DECODE_LENGTH], processed[RESULT_DECODE_LENGTH]; // 3 caracteres codificados en ASCII.
+	char arr[READ_DECODE_LENGTH], processed[RESULT_DECODE_LENGTH];
 	arr[READ_DECODE_LENGTH - 1] = '\0';
 	processed[RESULT_DECODE_LENGTH - 1] = '\0';
 	FILE* input = fopen(input_file, "r");
