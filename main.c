@@ -126,7 +126,7 @@ int main (int argc, char *argv[]) {
 	} else if (input && output) {
 		encode_ascii_to_64(input_file, output_file);
 	} else if (!feof(stdin)) {
-		encode_ascii_to_64(NULL, NULL); // Se supone que se tiene que poder decodificar tambien desde stdin??
+		encode_ascii_to_64(NULL, NULL);
 	}
 	return EXIT_SUCCESS;
 }

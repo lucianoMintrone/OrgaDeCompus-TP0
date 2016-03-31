@@ -4,7 +4,7 @@
 #include "file_handler.h"
 
 #define ENCODE_READ_LENGTH 4
-#define DECODE_READ_LENGTH 5 // se suma uno por el /0
+#define DECODE_READ_LENGTH 5
 
 size_t get_encode_chars(FILE* fp, char* str) {
 	fgets(str, ENCODE_READ_LENGTH, fp);

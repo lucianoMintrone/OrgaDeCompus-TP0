@@ -268,6 +268,6 @@ char ascii_to_64 (int n) {
 		case 63:
 			return '/';
 		default:
-			return 'A'; // Por que A es el default?
+			return 'A';
 	}
 }
