@@ -52,7 +52,7 @@ void encode_ascii_to_64(char* input_file, char* output_file) {
 	
 	size_t read_size;
   
-	for (int i = 0; i < fsize(input); i += READ_ENCODE_LENGTH - 1) {
+	for (int i = 0; !feof(input); i += READ_ENCODE_LENGTH - 1) {
 		read_size = get_encode_chars(input, arr);
 		_encode_ascii_to_64(arr, read_size, processed);
 		write_code(output, processed);
@@ -72,7 +72,7 @@ void decode_64_to_ascii(char* input_file, char* output_file) {
 	if (!input || !output) return;
 	size_t write_size;
  
-	for (int i = 0; i < fsize(input); i += READ_DECODE_LENGTH - 1) {
+	for (int i = 0; !feof(input); i += READ_DECODE_LENGTH - 1) {
 		get_decode_chars(input, arr);
 		write_size = _decode_64_to_ascii(arr, processed);
 		write_decode(output, write_size, processed);
