@@ -51,13 +51,13 @@ void encode_ascii_to_64(char* input_file, char* output_file) {
 	if (!input || !output) return;
 	
 	size_t read_size;
-  
-	for (int i = 0; i < fsize(input); i += READ_ENCODE_LENGTH - 1) {
+	
+	for (int i = 0; !feof(input); i += READ_ENCODE_LENGTH - 1) {
 		read_size = get_encode_chars(input, arr);
+		if (read_size == 3 && feof(input)) break;
 		_encode_ascii_to_64(arr, read_size, processed);
 		write_code(output, processed);
 	}
-	if (!input_file && !output_file) putc('\n', output);
 	
 	fclose(input);
 	fclose(output);
