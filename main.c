@@ -56,7 +56,7 @@ void encode_ascii_to_64(char* input_file, char* output_file) {
 		read_size = get_encode_chars(input, arr);
 		if (read_size == 3 && feof(input)) break;
 		_encode_ascii_to_64(arr, read_size, processed);
-		write_code(output, processed);
+                if (read_size != 0) write_code(output, processed);
 	}
 	
 	fclose(input);
