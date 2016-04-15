@@ -5,10 +5,18 @@
 
 #define ENCODE_READ_LENGTH 4
 #define DECODE_READ_LENGTH 5
+#define EOF_CODE -1
 
 size_t get_encode_chars(FILE* fp, char* str) {
-	fgets(str, ENCODE_READ_LENGTH, fp);
-	return strlen(str);
+	int read_size = ENCODE_READ_LENGTH - 1;
+	for (int i = 0; i < ENCODE_READ_LENGTH - 1; i++) {
+		str[i] = fgetc(fp);
+		printf("str[i]: %c\n", str[i]);
+		if (str[i] == EOF_CODE) read_size--;
+	}
+	str[ENCODE_READ_LENGTH - 1] = '\0';
+	printf("read_size: %d\n", read_size);
+	return read_size;
 }
 
 size_t get_decode_chars(FILE* fp, char* str) {
